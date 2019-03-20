@@ -36,6 +36,10 @@
   "scripts": {
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "20.0.4"
   }
 }
