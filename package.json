@@ -37,9 +37,14 @@
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "dev": "webpack-dev-server",
-    "test": "jest"
+    "test": "jest --config=jest.config.json"
   },
   "devDependencies": {
-    "jest": "20.0.4"
+    "enzyme": "3.0.0",
+    "enzyme-adapter-react-16": "1.0.0",
+    "enzyme-to-json": "3.0.1",
+    "jest": "20.0.4",
+    "raf": "3.3.2",
+    "react-test-renderer": "16.0.0"
   }
 }
