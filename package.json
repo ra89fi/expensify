@@ -30,14 +30,15 @@
     "style-loader": "0.18.2",
     "uuid": "3.3.2",
     "validator": "8.0.0",
-    "webpack": "3.1.0",
-    "webpack-dev-server": "2.5.1"
+    "webpack": "3.1.0"
   },
   "scripts": {
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "dev": "webpack-dev-server",
-    "test": "jest --config=jest.config.json"
+    "test": "jest --config=jest.config.json",
+    "start": "node server/server.js",
+    "heroku-postbuild": "yarn run build:prod"
   },
   "devDependencies": {
     "enzyme": "3.0.0",
@@ -45,6 +46,7 @@
     "enzyme-to-json": "3.0.1",
     "jest": "20.0.4",
     "raf": "3.3.2",
-    "react-test-renderer": "16.0.0"
+    "react-test-renderer": "16.0.0",
+    "webpack-dev-server": "2.5.1"
   }
 }

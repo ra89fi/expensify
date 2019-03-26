@@ -13,3 +13,6 @@ tags
 # Docker
 Dockerfile
 docker-compose.yml
+
+# built files
+public/dist
