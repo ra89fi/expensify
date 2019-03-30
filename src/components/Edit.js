@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import { editExpense, removeExpense } from '../actions/expenses';
+import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 export class Edit extends React.Component {
   onSubmit = expense => {
@@ -30,8 +30,8 @@ export default connect(
   },
   (dispatch, props) => {
     return {
-      onSubmit: (id, expense) => dispatch(editExpense(id, expense)),
-      onBtnClick: data => dispatch(removeExpense(data))
+      onSubmit: (id, expense) => dispatch(startEditExpense(id, expense)),
+      onBtnClick: data => dispatch(startRemoveExpense(data))
     };
   }
 )(Edit);
