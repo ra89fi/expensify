@@ -199,6 +199,7 @@ exports[`should render ExpenseForm with expense data 1`] = `
       onChange={[Function]}
       placeholder="Add a note for your expense (optional)"
       rows="5"
+      value=""
     />
     <button>
       Edit Expense

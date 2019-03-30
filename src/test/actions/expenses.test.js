@@ -1,15 +1,31 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addExpense, startAddExpense, removeExpense, editExpense } from '../../actions/expenses';
+import {
+  addExpense,
+  startAddExpense,
+  removeExpense,
+  editExpense,
+  setExpenses,
+  startSetExpenses
+} from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
 const createMockStore = configureMockStore([thunk]);
 let originalTimeout;
 
-beforeEach(function() {
+beforeEach(function(done) {
   originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
   jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+
+  const expensesData = {};
+  expenses.forEach(({ id, description = '', amount = 0, notes = '', createdAt = Date.now() }) => {
+    expensesData[id] = { description, amount, notes, createdAt };
+  });
+  database
+    .ref('expenses')
+    .set(expensesData)
+    .then(() => done());
 });
 
 afterEach(function() {
@@ -25,12 +41,12 @@ test('should setup remove expense action object', () => {
 });
 
 test('should setup edit expense action object', () => {
-  const action = editExpense('123abc', { note: 'new note' });
+  const action = editExpense('123abc', { notes: 'new note' });
   expect(action).toEqual({
     type: 'EDIT_EXPENSE',
     id: '123abc',
     updates: {
-      note: 'new note'
+      notes: 'new note'
     }
   });
 });
@@ -95,4 +111,24 @@ test('should add expense with default values to database and store', done => {
       expect(snapshot.val()).toEqual(expenseData);
       done();
     });
+});
+
+test('should setup set expenses action object with data', () => {
+  const action = setExpenses(expenses);
+  expect(action).toEqual({
+    type: 'SET_EXPENSES',
+    expenses
+  });
+});
+
+test('should fetch expenses from firebase', done => {
+  const store = createMockStore({});
+  store.dispatch(startSetExpenses()).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'SET_EXPENSES',
+      expenses
+    });
+    done();
+  });
 });
