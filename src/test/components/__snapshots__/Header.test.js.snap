@@ -10,8 +10,7 @@ exports[`should render Header correctly 1`] = `
       <NavLink
         activeClassName="is-active"
         ariaCurrent="true"
-        exact={true}
-        to="/"
+        to="/dashboard"
       >
         Dashboard
       </NavLink>
@@ -25,15 +24,11 @@ exports[`should render Header correctly 1`] = `
         Create
       </NavLink>
     </li>
-    <li>
-      <NavLink
-        activeClassName="is-active"
-        ariaCurrent="true"
-        to="/help"
-      >
-        Help
-      </NavLink>
-    </li>
   </ul>
+  <button
+    onClick={[Function]}
+  >
+    Logout
+  </button>
 </header>
 `;
