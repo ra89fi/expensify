@@ -13,6 +13,7 @@ import configureStore from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
 import { firebase } from './firebase/firebase';
 import { login, logout } from './actions/auth';
+import Loading from './components/Loading';
 
 const store = configureStore();
 const appRoot = document.getElementById('app');
@@ -23,7 +24,7 @@ const jsx = (
   </Provider>
 );
 
-ReactDOM.render(<p>Loading...</p>, appRoot);
+ReactDOM.render(<Loading />, appRoot);
 
 let hasRendered = false;
 const renderApp = () => {
