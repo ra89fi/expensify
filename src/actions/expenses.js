@@ -9,8 +9,14 @@ export const addExpense = expense => ({
 export const startAddExpense = (expenseData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    const { description = '', notes = '', amount = 0, createdAt = Date.now() } = expenseData;
-    const expense = { description, notes, amount, createdAt };
+    const {
+      description = '',
+      notes = '',
+      amount = 0,
+      createdAt = Date.now(),
+      currency = 'USD'
+    } = expenseData;
+    const expense = { description, notes, amount, createdAt, currency };
     return database
       .ref(`users/${uid}/expenses`)
       .push(expense)

@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
+import CurrencyDropdown from './CurrencyDropdown';
 
 export default class ExpenseForm extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class ExpenseForm extends React.Component {
       notes: props.expense ? props.expense.notes : '',
       amount: props.expense ? (props.expense.amount / 100).toString() : '',
       createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+      currency: props.expense ? props.expense.currency : 'USD',
       focused: null,
       error: ''
     };
@@ -24,6 +26,12 @@ export default class ExpenseForm extends React.Component {
     const notes = e.target.value;
     this.setState(() => ({
       notes
+    }));
+  };
+  onCurrencyChange = e => {
+    const currency = e.target.value;
+    this.setState(() => ({
+      currency
     }));
   };
   onAmountChange = e => {
@@ -59,7 +67,8 @@ export default class ExpenseForm extends React.Component {
         description: this.state.description,
         notes: this.state.notes,
         amount: parseFloat(this.state.amount, 10) * 100,
-        createdAt: this.state.createdAt.valueOf()
+        createdAt: this.state.createdAt.valueOf(),
+        currency: this.state.currency
       });
     }
   };
@@ -75,21 +84,28 @@ export default class ExpenseForm extends React.Component {
           value={this.state.description}
           onChange={this.onDescriptionChange}
         />
-        <input
-          type="text"
-          className="text-input"
-          placeholder="Amount"
-          value={this.state.amount}
-          onChange={this.onAmountChange}
-        />
-        <SingleDatePicker
-          date={this.state.createdAt}
-          onDateChange={this.onDateChange}
-          focused={this.state.focused}
-          onFocusChange={this.onFocusChange}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />
+        <div className="form__money">
+          <SingleDatePicker
+            date={this.state.createdAt}
+            onDateChange={this.onDateChange}
+            focused={this.state.focused}
+            onFocusChange={this.onFocusChange}
+            numberOfMonths={1}
+            isOutsideRange={() => false}
+          />
+          <input
+            type="text"
+            className="text-input"
+            placeholder="Amount"
+            value={this.state.amount}
+            onChange={this.onAmountChange}
+          />
+          <CurrencyDropdown
+            cName="select-input"
+            currency={this.state.currency}
+            onCurrencyChange={this.onCurrencyChange}
+          />
+        </div>
         <textarea
           className="textarea-input"
           cols="20"

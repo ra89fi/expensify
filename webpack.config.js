@@ -57,7 +57,8 @@ module.exports = env => {
         'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
         'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(
           process.env.FIREBASE_MESSAGING_SENDER_ID
-        )
+        ),
+        'process.env.CURRENCYLAYER_API_KEY': JSON.stringify(process.env.CURRENCYLAYER_API_KEY)
       })
     ],
     devtool: isProd ? 'source-map' : 'inline-source-map',

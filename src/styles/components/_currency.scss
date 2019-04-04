@@ -1,0 +1,14 @@
+.currency__title {
+  color: white;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.currency > .currency__select {
+  font-size: $font-size-small;
+  font-weight: 300;
+  border: none;
+  background: $dark-blue;
+  color: white;
+  outline: 0;
+}

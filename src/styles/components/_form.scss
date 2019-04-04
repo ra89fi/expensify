@@ -13,3 +13,16 @@
   opacity: 0.6;
   font-size: 14px;
 }
+
+.form__money {
+  @extend .form;
+
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+
+    .select-input,
+    .text-input {
+      margin-left: $s-size;
+    }
+  }
+}
